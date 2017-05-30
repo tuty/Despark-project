@@ -1,0 +1,43 @@
+
+This mini-app consists of a listing and a detail view:
+
+- The listing contains a list of articles. Those should be paginated and the user can load more via a button at the bottom. When clicking on an article, it should be highlighted in the list, details about it should be displayed on the right-hand side and the browser url should change in order to allow linking to individual articles. When no article is selected the right-hand side should be empty.
+
+- The article detail (right-hand side) should contain information about the selected article, as well as its comments. When initially loaded, the comments list should contain all the top level comments, with the ability to expand them by clicking on the `x replies` button. They can be hidden again via the `hide replies` button. Replying should be done by an inline form element, displayed underneath the comment being replied to - as show under "Second reply to second comment" in the wireframe.
+
+- The zip file contains an API module which you'll use to access the db. It's written in ES6 using CommonJS. You can use whatever tool you like to convert this to a browser-friendly implementation. The API comes with an embedded db which is seeded with sample articles and comments. It does not use a server. Instead all data is kept in memory. Any new comments you add will be lost after a browser refresh. 
+
+Example usage of the api:
+
+	 const api = require('./fakeApi');
+
+	// Loading all articles:
+	api.loadArticles().then((result) => {
+	  console.log('Articles: ', result.data);
+	  console.log('Articles count:', result.totalCount);
+	});
+
+	// Loading a slice of the articles:
+	api.loadArticles({ offset: 5, limit: 10 }).then((result) => {
+	  // ...
+	});
+
+	// Loading top-level comments for an article:
+	api.loadComments({ articleId: 0 }).then((result) => {
+	  console.log('Comments', result.data);
+	});
+
+	// Loading replies to a comment:
+	api.loadComments({ parentCommentId: 1 }).then((result) => {
+	  // ...
+	});
+
+	// Adding a new top-level comment:
+	api.addComment({ articleId: 0, text: 'Some text' }).then((result) => {
+	  // ...
+	});
+
+	Adding a reply to a comment:
+	api.addComment({ parentCommentId: 1, text: 'Some reply text' }).then((result) => {
+	  // ..
+	});
