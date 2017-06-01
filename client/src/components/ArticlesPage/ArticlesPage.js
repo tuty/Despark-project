@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import provider from '../../providers/provider';
+
 class ArticlesPage extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +14,7 @@ class ArticlesPage extends Component {
     }
 
     componentDidMount() {
-
+        provider.getArticles().then((result) => console.log(result));
     }
 
     componentWillReceiveProps(nextProps) {

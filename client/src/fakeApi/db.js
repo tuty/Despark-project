@@ -24,7 +24,7 @@ exports.insert = function(table, row) {
 
 exports.find = function(table, filter = {}, { offset = 0, limit = tables[table].length } = {}) {
   let rows =  tables[table].filter((row) => {
-    console.log(row);
+    //console.log(row);
     const filterKeys = Object.keys(filter);
 
     for (const filterKey of filterKeys) {
