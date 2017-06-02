@@ -1,0 +1,16 @@
+$fullHeight: 100vh;
+
+main {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+
+    aside.articles-container {
+        background-color: coral;
+        width: 35%;
+    }
+    article.article-detailed-view {
+        background-color: lightblue;
+        width: 65%;
+    }
+}

@@ -1,0 +1,9 @@
+@mixin multilineElipsis($max-height, $lines-to-show) {
+    display: block;
+    display: -webkit-box;
+    max-height: $max-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

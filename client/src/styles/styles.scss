@@ -1,5 +1,6 @@
-body {
-    h1 {
-        font-size: 3em;
-    }
-}
+@import './core/_reset.scss';
+@import './core/_normalize.scss';
+@import './utils/utils.scss';
+
+@import '../components/ArticlesPage/articlesPage.scss';
+@import '../components/AtrticleShortView/articleShortView.scss';
