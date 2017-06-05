@@ -4,7 +4,11 @@
     height: 13em;
     padding: 1em;
     margin-bottom: 1em;
-    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+    &.active {
+        background-color: #F1F1F1;
+    }
     .image-container {
         width: 13em;
         height: 100%;
@@ -33,7 +37,7 @@
         }
         .details__footer {
             text-decoration-line: underline;
-            color: lightblue;
+            color: #6495ED;
         }
     }
 }

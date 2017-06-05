@@ -7,3 +7,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.button-container-center-align {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+}

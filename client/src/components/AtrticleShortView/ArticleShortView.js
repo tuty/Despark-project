@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 const ArticleShortView = props => {
 
-    const { imageUrl, title, text, commentsCount } = props;
+    const { imageUrl, title, text, commentsCount, id } = props;
 
     return (
-        <div className={'article-short-view'}>
+        <Link to={`/articles/${id}`} className={'article-short-view'} activeClassName={'active'}>
             <div className={'image-container'}>
                 <img
                     className={'article-image'}
@@ -20,15 +20,19 @@ const ArticleShortView = props => {
                     <p className={'details__text'}>{text}</p>
                 </div>
                 <div className={'details__footer'}>
-                     <Link to={''}> {commentsCount}&nbsp;comments </Link>
+                    {commentsCount}&nbsp;comments
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
 ArticleShortView.propTypes = {
-
+    imageUrl: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    commentsCount: PropTypes.number,
+    id: PropTypes.number
 };
 
 export default ArticleShortView;

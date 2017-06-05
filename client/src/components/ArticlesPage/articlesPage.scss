@@ -6,11 +6,16 @@ main {
     width: 100%;
 
     aside.articles-container {
-        background-color: coral;
         width: 35%;
+        padding: 1em;
+        .load-next-button {
+             box-shadow: 0.3em 0.3em 1em #888888;
+             display: inline-block;
+             margin: 1em auto;
+        }
     }
-    article.article-detailed-view {
-        background-color: lightblue;
+    article.article-detailed-view-container {
+        padding: 1em;
         width: 65%;
     }
 }
