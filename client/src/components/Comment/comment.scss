@@ -1,0 +1,30 @@
+.comment-wrapper {
+    width: 100%;
+    .comment {
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.3em;
+        .comment-header {
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+            max-width: 30em;
+            .comment-header__created-at {
+                margin-left: 1em;
+            }
+            .comment-header__toogle-replies-button,
+            .comment-header__reply-button {
+                @extend .comment-header__created-at;
+                background-color: transparent;
+                border: transparent;
+                text-decoration-line: underline;
+                color: #6495ED;
+                outline: none;
+            }
+        }
+        .reply-input-container {
+            margin-top: 0.8em;
+        }
+    }
+}

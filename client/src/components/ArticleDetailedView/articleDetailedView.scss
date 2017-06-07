@@ -1,0 +1,29 @@
+.article-detailed-view {
+    .title-container {
+        margin-bottom: 1.3em;
+        h1 {
+            margin: 0;
+        }
+    }
+    .image-container {
+        width: 100%;
+        height: 15em;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .text-container {
+        margin: 0.5em 0;
+        padding: 0.5em;
+    }
+    .comments-container {
+        margin-top: 2em;
+        .send-comment-button-container {
+            padding: 1em 0;
+            button {
+                box-shadow: 0.3em 0.3em 1em #888888;
+            }
+        }
+    }
+}
