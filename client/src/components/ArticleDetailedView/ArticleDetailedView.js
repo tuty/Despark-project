@@ -31,13 +31,13 @@ class ArticledetailedView extends Component {
         const articleId = this.props.article.id;
         const NewArticleId = nextProps.article.id;
 
-         this.setState({
+
+        if (articleId !== NewArticleId) {
+            this.setState({
                 comments: []
             });
-
-        if(articleId !== NewArticleId) {
-            this.updateComments(NewArticleId);
         }
+        this.updateComments(NewArticleId);
     }
 
     // shouldComponentUpdate(nextProps, nextState) {
@@ -87,7 +87,7 @@ class ArticledetailedView extends Component {
 
     renderComments(comments) {
         return comments.map((com) => (
-            <Comment comment={com} key={com.id}/>
+            <Comment comment={com} key={com.id} />
         ));
     }
 
