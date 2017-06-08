@@ -4,18 +4,21 @@
         display: -webkit-flex;
         display: flex;
         flex-direction: column;
-        margin-bottom: 1.3em;
+        margin-bottom: 0.5em;
         .comment-header {
             display: -webkit-flex;
             display: flex;
             justify-content: space-between;
             max-width: 30em;
-            .comment-header__created-at {
-                margin-left: 1em;
+            .comment-header__autor {
+                font-weight: bold;
+            }
+            .comment-header__relative-time {
+                margin-left: 0.5em;
             }
             .comment-header__toogle-replies-button,
             .comment-header__reply-button {
-                @extend .comment-header__created-at;
+                @extend .comment-header__relative-time;
                 background-color: transparent;
                 border: transparent;
                 text-decoration-line: underline;
@@ -25,6 +28,10 @@
         }
         .reply-input-container {
             margin-top: 0.8em;
+        }
+        .replies-container {
+            margin-top: 0.5em;
+            transform: translateX(3em);
         }
     }
 }

@@ -62,18 +62,22 @@ class ArticledetailedView extends Component {
         });
     }
 
-    sendComment() {
+    sendComment(ev) {
         const { sendComment, article } = this.props;
         const { id } = article;
         const comment = this.state.currentComment;
 
-        sendComment(id, comment).then(() => {
-            this.updateComments(id);
-        });
+        if (ev.charCode === 13) {
+            ev.preventDefault();
 
-        this.setState({
-            currentComment: ''
-        });
+            sendComment(id, comment).then(() => {
+                this.updateComments(id);
+            });
+
+            this.setState({
+                currentComment: ''
+            });
+        }
     }
 
     updateComments(id) {
@@ -95,8 +99,6 @@ class ArticledetailedView extends Component {
         const { imageUrl, text, title } = this.props.article;
         const { currentComment, comments } = this.state;
 
-        console.log(comments);
-
         return (
             <div className={'article-detailed-view'}>
                 <div className={'title-container'}>
@@ -110,10 +112,8 @@ class ArticledetailedView extends Component {
                 </p>
                 <div className={'comments-container'}>
                     <h1>Comments</h1>
-                    <textarea cols="30" rows="8" value={currentComment} placeholder={'Body of comment'} onChange={this.addComment} />
-                    <div className={'send-comment-button-container'}>
-                        <button onClick={this.sendComment}>Send Comment</button>
-                    </div>
+                    <textarea cols="30" rows="8" value={currentComment} placeholder={'Body of comment'} onChange={this.addComment}  onKeyPress={this.sendComment}/>
+
                     <div className={'comments-container'}>
                         {this.renderComments(comments)}
                     </div>
