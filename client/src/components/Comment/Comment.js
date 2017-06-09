@@ -10,11 +10,10 @@ class Comment extends Component {
         this.state = {
             showReplies: false,
             showReplyInput: false,
+            loadedReplies: false,
             currentReply: '',
             replies: [],
-            loadedReplies: false,
             repliesCount: this.props.comment.repliesCount,
-
         };
         this.toogleReplies = this.toogleReplies.bind(this);
         this.renderComment = this.renderComment.bind(this);
@@ -26,41 +25,45 @@ class Comment extends Component {
         this.toogleReplies = this.toogleReplies.bind(this);
         this.getReplies = this.getReplies.bind(this);
         this.renderShowReplyButtonText = this.renderShowReplyButtonText.bind(this);
+        this.getToogleRepliesButtonClassName = this.getToogleRepliesButtonClassName.bind(this);
     }
-
-    // componentWillMount() {
-
-    // }
-
-    componentDidMount() {
-
-    }
-
-    // componentWillReceiveProps(nextProps) {
-
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-
-    // }
-
-    // componentWillUpdate(nextProps, nextState) {
-
-    // }
-
-    // componentDidUpdate(prevProps, prevState) {
-
-    // }
-
-    // componentWillUnmount() {
-
-    // }
 
     toogleReplies() {
+        const { id } = this.props.comment;
+
         this.setState({
             showReplies: !this.state.showReplies,
             loadedReplies: false
         });
+        window.setTimeout(() => {
+            if (this.state.showReplies) {            
+                this.getReplies(id);
+            } else {
+                this.setState({
+                    replies: []
+                });
+            }
+        }, 0);
+    }
+
+    getReplies(parentCommentId) {
+        provider.getReplies(parentCommentId).then((res) => {
+            this.setState({
+                replies: [...res.data],
+                loadedReplies: true
+            });
+        });
+    }
+
+    getToogleRepliesButtonClassName() {
+        const { repliesCount } = this.state;
+        let className = 'comment-header__toogle-replies-button';
+
+        if (repliesCount === 0) {
+            className += ' disabled';
+        }
+
+        return className;
     }
 
     toogleReplyInput() {
@@ -84,25 +87,22 @@ class Comment extends Component {
         if (ev.charCode === 13) {
             ev.preventDefault();
             provider.addReply(id, currentReply)
-                .then(() => {
+                .then((res) => {
                     this.setState({
                         currentReply: '',
                         showReplyInput: !this.state.showReplyInput,
                         repliesCount: this.state.repliesCount + 1
                     });
+                    if (this.state.showReplies) {            
+                        this.setState({
+                            replies: [...this.state.replies, res.data]
+                        });
+                    }
                 });
         }
 
     }
 
-    getReplies(parentCommentId) {
-        provider.getReplies(parentCommentId).then((res) => {
-            this.setState({
-                replies: [...res.data],
-                loadedReplies: true
-            });
-        });
-    }
 
     getRelativeTime(timestamp) {
         return moment(timestamp, 'x').fromNow();
@@ -127,14 +127,12 @@ class Comment extends Component {
         return textButton;
     }
 
-    renderReplies(parentCommentId) {
+    renderReplies() {
         const { replies, loadedReplies } = this.state;
-
-        this.getReplies(parentCommentId);
 
         return (
             <div className={'replies-container'}>
-                {loadedReplies && replies && replies.map((reply) => (<Comment comment={reply} key={reply.id}/>))}
+                {loadedReplies && replies.map((reply) => (<Comment comment={reply} key={reply.id}/>))}
             </div>
         );
     }
@@ -149,37 +147,28 @@ class Comment extends Component {
         );
     }
 
-    renderComment(comment) {
-        const { showReplyInput, showReplies, loadedReplies, repliesCount } = this.state;
-        const { author, createdAt, id, text } = comment;
+    render() {
+        const { comment } = this.props;
+        const { showReplyInput, showReplies, loadedReplies, repliesCount, replies } = this.state;
+        const { author, createdAt, text } = comment;
 
         return (
             <div className={'comment'}>
                 <div className={'comment-header'}>
                     <div>
-                        <span className={'comment-header__autor'}>{author}</span>
+                        <span className={'comment-header__autor'}>{String(author).replace(/[\[\]]/g, '').trim()}</span>
                         <span className={'comment-header__relative-time'}><i>{this.getRelativeTime(createdAt)}</i></span>
                     </div>
                     <div>
-                        <button className={'comment-header__toogle-replies-button'} onClick={this.toogleReplies}>{this.renderShowReplyButtonText(showReplies, repliesCount, loadedReplies)}</button>
+                        <button className={this.getToogleRepliesButtonClassName()} onClick={this.toogleReplies}>{this.renderShowReplyButtonText(showReplies, repliesCount, loadedReplies)}</button>
                         <button className={'comment-header__reply-button'} onClick={this.toogleReplyInput}>{`${showReplyInput ? 'discard reply' : 'reply'}`}</button>
                     </div>
                 </div>
                 <div className={'comment-content'}>{text}</div>
                 {showReplyInput &&
                     this.renderReplyInput()}
-                {showReplies &&
-                    this.renderReplies(id)}
-            </div>
-        );
-    }
-
-    render() {
-        const { comment } = this.props;
-
-        return (
-            <div className={'comment-wrapper'}>
-                {this.renderComment(comment)}
+                {showReplies && replies.length > 0 &&
+                    this.renderReplies()}
             </div>
         );
     }

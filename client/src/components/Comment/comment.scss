@@ -1,37 +1,45 @@
-.comment-wrapper {
-    width: 100%;
-    .comment {
+.comment {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5em;
+    width: 30em;
+    .comment-header {
         display: -webkit-flex;
         display: flex;
-        flex-direction: column;
-        margin-bottom: 0.5em;
-        .comment-header {
-            display: -webkit-flex;
-            display: flex;
-            justify-content: space-between;
-            max-width: 30em;
-            .comment-header__autor {
-                font-weight: bold;
-            }
-            .comment-header__relative-time {
-                margin-left: 0.5em;
-            }
-            .comment-header__toogle-replies-button,
-            .comment-header__reply-button {
-                @extend .comment-header__relative-time;
-                background-color: transparent;
-                border: transparent;
-                text-decoration-line: underline;
-                color: #6495ED;
-                outline: none;
-            }
+        justify-content: space-between;
+        width:100%;
+        .comment-header__autor {
+            font-weight: bold;
         }
-        .reply-input-container {
-            margin-top: 0.8em;
+        .comment-header__relative-time {
+            margin-left: 0.5em;
         }
-        .replies-container {
-            margin-top: 0.5em;
-            transform: translateX(3em);
+        .comment-header__toogle-replies-button,
+        .comment-header__reply-button {
+            @extend .comment-header__relative-time;
+            background-color: transparent;
+            border: transparent;
+            text-decoration-line: underline;
+            color: #6495ED;
+            outline: none;
+            &.disabled {
+                cursor: not-allowed;
+            }
         }
     }
+    .comment-content {
+        width:100%;
+        text-align: left;
+        word-wrap: break-word;
+    }
+    .reply-input-container {
+        margin-top: 0.8em;
+    }
+    .replies-container {
+        margin-top: 0.5em;
+        transform: translateX(3em);
+        width:100%;
+    }
 }
+

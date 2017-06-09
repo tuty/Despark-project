@@ -81,7 +81,6 @@ class ArticledetailedView extends Component {
     }
 
     updateComments(id) {
-
         provider.getComments(id).then((result) => {
             this.setState({
                 comments: result.data
