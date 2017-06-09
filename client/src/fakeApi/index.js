@@ -22,7 +22,7 @@ exports.loadArticles = function(paging) {
     data: articles,
     totalCount,
   });
-}
+};
 
 exports.loadComments = function({ parentCommentId, articleId }) {
   let filter;
@@ -44,7 +44,7 @@ exports.loadComments = function({ parentCommentId, articleId }) {
   return delayedPromise({
     data: comments,
   });
-}
+};
 
 exports.addComment = function({ text, articleId, parentCommentId = null }) {
   const comment = {
@@ -57,4 +57,4 @@ exports.addComment = function({ text, articleId, parentCommentId = null }) {
   const insertedComment = db.insert('comments', comment);
 
   return delayedPromise({ data: insertedComment });
-}
+};

@@ -20,11 +20,10 @@ exports.insert = function(table, row) {
   lastId[table] += 1;
 
   return finalRow;
-}
+};
 
 exports.find = function(table, filter = {}, { offset = 0, limit = tables[table].length } = {}) {
   let rows =  tables[table].filter((row) => {
-    //console.log(row);
     const filterKeys = Object.keys(filter);
 
     for (const filterKey of filterKeys) {
@@ -39,13 +38,13 @@ exports.find = function(table, filter = {}, { offset = 0, limit = tables[table].
   rows = rows.slice(offset).slice(0, limit);
 
   return copyOf(rows);
-}
+};
 
 exports.count = function(table, filter) {
   const rows = exports.find(table, filter);
   return rows.length;
-}
+};
 
 exports.printTables = function() {
-  console.log(tables);
-}
+  console.log(tables); //eslint-disable-line no-console
+};
