@@ -17,10 +17,6 @@ class ArticledetailedView extends Component {
         this.renderComments = this.renderComments.bind(this);
     }
 
-    // componentWillMount() {
-
-    // }
-
     componentDidMount() {
         const { id } = this.props.article;
 
@@ -31,7 +27,6 @@ class ArticledetailedView extends Component {
         const articleId = this.props.article.id;
         const NewArticleId = nextProps.article.id;
 
-
         if (articleId !== NewArticleId) {
             this.setState({
                 comments: []
@@ -39,22 +34,6 @@ class ArticledetailedView extends Component {
         }
         this.updateComments(NewArticleId);
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-
-    // }
-
-    // componentWillUpdate(nextProps, nextState) {
-
-    // }
-
-    // componentDidUpdate(prevProps, prevState) {
-
-    // }
-
-    // componentWillUnmount() {
-
-    // }
 
     addComment(ev) {
         this.setState({

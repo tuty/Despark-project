@@ -21,34 +21,9 @@ class ArticlesPage extends Component {
         this.sendComment = this.sendComment.bind(this);
     }
 
-    componentWillMount() {
-
-    }
-
     componentDidMount() {
-
         this.loadNextArticles();
     }
-
-    // componentWillReceiveProps(nextProps) {
-
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-
-    // }
-
-    // componentWillUpdate(nextProps, nextState) {
-
-    // }
-
-    // componentDidUpdate(prevProps, prevState) {
-
-    // }
-
-    // componentWillUnmount() {
-
-    // }
 
     loadNextArticles() {
         const { articles, offset } = this.state;
@@ -70,7 +45,6 @@ class ArticlesPage extends Component {
             const updatedArticles = articles.map((art) => {
                 if (art.id == result.data.articleId) {
                     art.commentsCount = +art.commentsCount + 1;
-                    // art.comments = art.comments ? [...art.comments, result.data] : [result.data];
                 }
 
                 return art;
@@ -103,15 +77,15 @@ class ArticlesPage extends Component {
     }
 
     render() {
-
         const { articles, articlesTotalCount } = this.state;
         const { articleId } = this.props.params;
-
-        console.log(articles);
 
         return (
             <main>
                 <aside className={'articles-container'}>
+                    <div className={'aside-title-container'}>
+                        <h1>Articles List</h1>
+                    </div>
                     {this.renderArticlesList(articles)}
                     <div className={'button-container-center-align'}>
                         {articles.length != articlesTotalCount && <button onClick={this.loadNextArticles} className={'load-next-button'}>Load Next</button>}

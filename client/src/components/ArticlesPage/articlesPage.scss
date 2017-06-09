@@ -8,6 +8,12 @@ main {
     aside.articles-container {
         width: 35%;
         padding: 1em;
+        .aside-title-container {
+            margin-bottom: 1.3em;
+            h1 {
+                margin: 0;
+            }
+        }
         .load-next-button {
              box-shadow: 0.3em 0.3em 1em #888888;
              display: inline-block;

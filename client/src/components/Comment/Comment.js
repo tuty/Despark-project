@@ -16,7 +16,6 @@ class Comment extends Component {
             repliesCount: this.props.comment.repliesCount,
         };
         this.toogleReplies = this.toogleReplies.bind(this);
-        this.renderComment = this.renderComment.bind(this);
         this.getRelativeTime = this.getRelativeTime.bind(this);
         this.toogleReplyInput = this.toogleReplyInput.bind(this);
         this.handleChangeTextAreaInput = this.handleChangeTextAreaInput.bind(this);
@@ -80,7 +79,6 @@ class Comment extends Component {
     }
 
     sendReply(ev) {
-
         const { currentReply } = this.state;
         const { id } = this.props.comment;
 
@@ -100,16 +98,13 @@ class Comment extends Component {
                     }
                 });
         }
-
     }
-
 
     getRelativeTime(timestamp) {
         return moment(timestamp, 'x').fromNow();
     }
 
     renderShowReplyButtonText(showReplies, repliesCount, loadedReplies) {
-
         let textButton = `${repliesCount} replies`;
 
         if (repliesCount === 1) {
