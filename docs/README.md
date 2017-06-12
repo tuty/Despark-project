@@ -9,7 +9,7 @@ This will run the automated build process, start up a webserver, and open the ap
 ##Technologies
 
 | **Tech** | **Description** |
-|----------|-------|---|
+|----------|-------|
 |  [React](https://facebook.github.io/react/)  |   Fast, composable client-side components.    |
 |  [React Router](https://github.com/reactjs/react-router) | A complete routing library for React | [Pluralsight Course](https://www.pluralsight.com/courses/react-flux-building-applications) |
 |  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today.     | 
