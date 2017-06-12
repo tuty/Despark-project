@@ -21,3 +21,4 @@ This will run the automated build process, start up a webserver, and open the ap
 |  [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. |
 |  [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). |
 |  [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. |
+|  [Moment.JS](https://momentjs.com/)  | Parse, validate, manipulate, and display dates and times in JavaScript. |
